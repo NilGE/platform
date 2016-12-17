@@ -1,0 +1,57 @@
+{
+  "name": "platform",
+  "version": "1.0.0",
+  "description": "platform test version",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node server.js --ignore public/",
+    "dev": "webpack -wd"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NilGE/platform.git"
+  },
+  "keywords": [
+    "node",
+    "react",
+    "mongodb"
+  ],
+  "author": "nilge",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NilGE/platform/issues"
+  },
+  "homepage": "https://github.com/NilGE/platform#readme",
+  "dependencies": {
+    "axios": "^0.15.3",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "json-loader": "^0.5.4",
+    "method-override": "^2.3.7",
+    "mongoose": "^4.7.3",
+    "morgan": "^1.7.0",
+    "node-sass-middleware": "^0.10.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "eslint": "^3.12.2",
+    "eslint-plugin-react": "^6.8.0",
+    "nodemon": "^1.11.0",
+    "webpack": "^1.14.0"
+  }
+}
