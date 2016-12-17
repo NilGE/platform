@@ -1,15 +1,24 @@
 import express from 'express';
-import config from './config/config';
 import bodyParser from 'body-parser';
-// import apiRouter from './api/index';
+import mongoose from 'mongoose';
+import config from './config/config';
+import apiRouter from './api/index';
 
 const server = express();
 
-server.use(bodyParser.json());
 
+// MongoDB Connection
+mongoose.connect(config.mongodbUri, (error) => {
+  if (error) {
+    console.error('lease make sure Mongodb is installed and running!');
+    throw error;
+  }
+});
+
+server.use(bodyParser.json());
 server.set('view engine', 'ejs');
 
-// server.use('/api', apiRouter);
+server.use('/api', apiRouter);
 server.use(express.static('public'));
 
 server.get('/', (req, res) => {
