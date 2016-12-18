@@ -21,7 +21,7 @@ server.set('view engine', 'ejs');
 server.use('/api', apiRouter);
 server.use(express.static('public'));
 
-server.get('/', (req, res) => {
+server.get('*', (req, res) => {
   res.render('index', {
     content: 'dummy content'
   });
