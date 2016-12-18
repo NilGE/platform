@@ -3,8 +3,10 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import config from './config/config';
 import apiRouter from './api/index';
+import sassMiddleware from 'node-sass-middleware';
+import path from 'path';
 
-const server = express();
+const app = express();
 
 
 // MongoDB Connection
@@ -15,18 +17,23 @@ mongoose.connect(config.mongodbUri, (error) => {
   }
 });
 
-server.use(bodyParser.json());
-server.set('view engine', 'ejs');
+app.use(bodyParser.json());
+app.set('view engine', 'ejs');
 
-server.use('/api', apiRouter);
-server.use(express.static('public'));
+app.use('/api', apiRouter);
+app.use(express.static('public'));
 
-server.get('*', (req, res) => {
+app.use(sassMiddleware({
+	src: path.join(__dirname, 'sass'),
+	dest: path.join(__dirname, 'public')
+}));
+
+app.get('*', (req, res) => {
   res.render('index', {
     content: 'dummy content'
   });
 });
 
-server.listen(config.port, config.host, () => {
-  console.info('Magic happen on port ', config.port);
+app.listen(config.port, config.host, () => {
+  console.info('Magic happens at port ', config.port);
 });
