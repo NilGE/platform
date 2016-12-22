@@ -5,6 +5,7 @@ import About from './components/common/about';
 import Book from './components/book/book';
 import BookDetailsPage from './components/book/bookDetailsPage';
 import CartPage from './components/cart/cartPage';
+import User from './components/user/user';
 import App from './components/App';
 
 
@@ -16,5 +17,6 @@ export default (
     <Route path="/books" component={Book}></Route>
     <Route path="/books/:id" component={BookDetailsPage}></Route>
     <Route path="/cart" component={CartPage}></Route>
+    <Route path="/user" component={User}></Route>
   </Route>
 );
