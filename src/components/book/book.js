@@ -10,6 +10,7 @@ class Book extends React.Component{
   }
 
   submitBook(input){
+    console.log(input);
     this.props.createBook(input);
   }
 
@@ -27,9 +28,10 @@ class Book extends React.Component{
               </th>
             </thead>
             <tbody>
-            {this.props.books.map((b, i) => <tr key={i}>
-              <td>{b.title}</td>
-              <td><Link to={`/books/${b.id}`}>View</Link></td>
+
+            {this.props.books.map((b) => <tr key={b._id}>
+              <td>{b.Title}</td>
+
             </tr> )}
             </tbody>
           </table>
@@ -49,16 +51,17 @@ const mapStateToProps = (state, ownProps) => {
   return {
     // You can now say this.props.books
     books: state.books
-  }
+  };
 };
 
 // Maps actions to props
 const mapDispatchToProps = (dispatch) => {
+  console.log('aaaaa');
   return {
   // You can now say this.props.createBook
     createBook: book => dispatch(bookActions.createBook(book))
-  }
+  };
 };
 
-// Use connect to put them together
+// Use connect to put them together  <td><Link to={`/books/${b.id}`}>View</Link></td>
 export default connect(mapStateToProps, mapDispatchToProps)(Book);

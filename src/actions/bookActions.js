@@ -1,12 +1,13 @@
 import Axios from 'axios';
+import * as actionTypes from './actionTypes';
 
-const apiUrl = 'http://57c62fdcc1fc8711008f2a7e.mockapi.io/api/book';
+const apiUrl = 'http://localhost:8080/api/books';
 // Sync Action
 export const fetchBooksSuccess = (books) => {
   return {
     type: 'FETCH_BOOKS_SUCCESS',
     books
-  }
+  };
 };
 //Async Action
 export const fetchBooks = () => {
@@ -18,7 +19,7 @@ export const fetchBooks = () => {
       .then(response => {
         // Dispatch another action
         // to consume data
-        dispatch(fetchBooksSuccess(response.data))
+        dispatch(fetchBooksSuccess(response.data));
       })
       .catch(error => {
         throw(error);
@@ -27,10 +28,11 @@ export const fetchBooks = () => {
 };
 
 export const createBookSuccess = (book) => {
+  console.log('createBook: ' + book);
   return {
     type: 'CREATE_BOOK_SUCCESS',
     book
-  }
+  };
 };
 
 export const createBook = (book) => {
@@ -39,7 +41,8 @@ export const createBook = (book) => {
       .then(response => {
         // Dispatch a synchronous action
         // to handle data
-        dispatch(createBookSuccess(response.data))
+        console.log('response.data: '+response.data);
+        dispatch(createBookSuccess(response.data));
       })
       .catch(error => {
         throw(error);
@@ -51,7 +54,7 @@ export const fetchBookByIdSuccess = (book) => {
   return {
     type: actionTypes.FETCH_BOOK_BY_ID_SUCCESS,
     book
-  }
+  };
 };
 // Async Action
 export const fetchBookById = (bookId) => {
@@ -78,14 +81,14 @@ export const addToCartSuccess = (item) => {
   return {
     type: 'ADD_TO_CART_SUCCESS',
     item
-  }
+  };
 };
 // Async add to cart
 export const addToCart = (item) => {
   return (dispatch) => {
     return Axios.post('http://57c64baac1fc8711008f2a82.mockapi.io/Cart', item)
       .then(response => {
-        dispatch(addToCartSuccess(response.data))
+        dispatch(addToCartSuccess(response.data));
       })
       .catch(error => {
         throw(error);
@@ -97,14 +100,14 @@ export const fetchCartSuccess = (items) => {
   return {
     type: 'FETCH_CART_SUCCESS',
     items
-  }
+  };
 };
 // Async load cart
 export const fetchCart = () => {
   return (dispatch) => {
     return Axios.get('http://57c64baac1fc8711008f2a82.mockapi.io/Cart')
       .then(response => {
-        dispatch(fetchCartSuccess(response.data))
+        dispatch(fetchCartSuccess(response.data));
       })
       .catch(error => {
         throw(error);

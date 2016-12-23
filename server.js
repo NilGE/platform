@@ -10,6 +10,8 @@ const app = express();
 
 
 // MongoDB Connection
+mongoose.Promise = global.Promise;
+
 mongoose.connect(config.mongodbUri, (error) => {
   if (error) {
     console.error('lease make sure Mongodb is installed and running!');

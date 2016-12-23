@@ -8,10 +8,10 @@ const BookForm = (props) => {
             e.preventDefault();
             // Assemble data into object
             var input = {
-              title: titleInput.value,
-              author: authorInput.value,
-              price: priceInput.value,
-              year: yearInput.value
+              Title: titleInput.value,
+              Author: authorInput.value,
+              Price: priceInput.value,
+              Year: yearInput.value
             };
             // Call method from parent component
             // to handle submission
