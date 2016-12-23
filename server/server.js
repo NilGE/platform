@@ -1,10 +1,11 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import config from './config/config';
-import apiRouter from './api/index';
+import config from '../config/config';
+import apiRouter from '../api/index';
 import sassMiddleware from 'node-sass-middleware';
 import path from 'path';
+
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 
 app.use('/api', apiRouter);
+
 app.use(express.static('public'));
 
 app.use(sassMiddleware({

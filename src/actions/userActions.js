@@ -15,7 +15,7 @@ export const fetchUsers = () => {
     // Returns a promise
     return axios.get('/api/users')
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         // Dispatch another action
         // to consume data
         dispatch(fetchUsersSuccess(response.data))
@@ -36,12 +36,6 @@ export const addUserSuccess = (user) => {
 // Async add a user
 export const addUser = (user) => {
   return (dispatch) => {
-    return axios.post('/api/addUser', user)
-      .then(response => {
-        dispatch(addToCartSuccess(response.data))
-      })
-      .catch(error => {
-        throw(error);
-      });
+    return axios.post('/api/addUser', user);
   };
 };
