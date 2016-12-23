@@ -1,6 +1,8 @@
 import express from 'express';
 import User from '../server/models/user';
 import Books from '../server/models/book';
+import validateInput from '../server/shared/validations/signup';
+
 const router = express.Router();
 
 router.get('/users', (req, res) => {
@@ -30,9 +32,14 @@ router.post('/books', (req, res) => {
 });
 
 router.post('/addUser', (req, res) => {
-	new User(req.body).save()
-										.then(doc => res.send({ userinfo: doc }))
-				 						.catch(console.error);
+	const { errors, isValid } = validateInput(req.body);
+	if (!isValid) {
+		res.status(400).json(errors);
+	} else {
+		new User(req.body).save()
+											.then(doc => res.send({ userinfo: doc }))
+					 						.catch(console.error);
+	}
 });
 
 export default router;
