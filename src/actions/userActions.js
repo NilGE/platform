@@ -36,7 +36,7 @@ export const addUserSuccess = (user) => {
 // Async add a user
 export const addUser = (user) => {
   return (dispatch) => {
-    return axios.post('/addUser', user)
+    return axios.post('/api/addUser', user)
       .then(response => {
         dispatch(addToCartSuccess(response.data))
       })
