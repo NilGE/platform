@@ -34,7 +34,7 @@ router.post('/books', (req, res) => {
 router.post('/addUser', (req, res) => {
 	const { errors, isValid } = validateInput(req.body);
 	if (!isValid) {
-		res.status(404).json(errors);
+		res.status(400).json(errors);
 	} else {
 		new User(req.body).save()
 											.then(doc => res.send({ userinfo: doc }))
