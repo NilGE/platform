@@ -12,14 +12,6 @@ class BookDetailsPage extends React.Component {
     this.props.fetchBookById(this.props.params.id);
   }
 
-  addToCart(book){
-    const item = {
-      title: book.title,
-      price: book.price
-    };
-    this.props.addToCart(item);
-  }
-
   render() {
     return (
       <div>
@@ -49,7 +41,6 @@ const mapDispatchToProps = (dispatch) => {
 BookDetailsPage.propTypes = {
   fetchBookById: React.PropTypes.func.isRequired,
   params: React.PropTypes.object.isRequired,
-  addToCart: React.PropTypes.func.isRequired,
   book: React.PropTypes.object.isRequired,
 };
 

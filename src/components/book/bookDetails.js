@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BookDetails = ({book, addToCart}) => {
+const BookDetails = ({book}) => {
   return (
     <div className="media">
       <div className="media-left">
@@ -15,8 +15,6 @@ const BookDetails = ({book, addToCart}) => {
           <li><stron>Price: </stron> ${book.price}</li>
           <li><stron>Year: </stron> {book.year}</li>
           <br/>
-          {/* onClick event */}
-          <button className="btn btn-primary" onClick={(e) => {addToCart(book); e.preventDefault();}}>Buy</button>
         </ul>
       </div>
     </div>
@@ -24,8 +22,7 @@ const BookDetails = ({book, addToCart}) => {
 };
 
 BookDetails.propTypes = {
-  book: React.PropTypes.object.isRequired,
-  addToCart: React.PropTypes.func.isRequired
+  book: React.PropTypes.object.isRequired
 };
 
 export default BookDetails;

@@ -14,7 +14,6 @@ const App = (props) => {
               <li><Link to="/">Home</Link></li>
               <li><Link to="/about">About</Link></li>
               <li><Link to="/books">Book</Link></li>
-              <li><Link to="/cart">Cart</Link></li>
               <li><Link to="/user">User</Link></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">

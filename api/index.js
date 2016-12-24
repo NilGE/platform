@@ -5,6 +5,9 @@ import validateInput from '../server/shared/validations/signup';
 
 const router = express.Router();
 
+/*
+User API
+*/
 router.get('/users', (req, res) => {
 	User.find({})
 			.select('username email')
@@ -18,6 +21,21 @@ router.get('/user/:username', (req, res) => {
       .catch(console.error);
 });
 
+router.post('/addUser', (req, res) => {
+	const { errors, isValid } = validateInput(req.body);
+	if (!isValid) {
+		res.status(400).json(errors);
+	} else {
+		console.log(req.body);
+		new User(req.body).save()
+											.then(doc => res.send({ userinfo: doc }))
+					 						.catch(console.error);
+	}
+});
+
+/*
+Book API
+*/
 router.get('/books', (req, res) => {
 	Books.find({})
 			//  .select('Title Price Author')
@@ -29,18 +47,6 @@ router.post('/books', (req, res) => {
 	new Books(req.body).save()
 										 .then(doc => res.send(doc))
 										 .catch(console.error);
-});
-
-router.post('/addUser', (req, res) => {
-	const { errors, isValid } = validateInput(req.body);
-	if (!isValid) {
-		res.status(400).json(errors);
-	} else {
-		console.log(req.body);
-		new User(req.body).save()
-											.then(doc => res.send({ userinfo: doc }))
-					 						.catch(console.error);
-	}
 });
 
 export default router;
