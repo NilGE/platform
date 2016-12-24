@@ -55,6 +55,7 @@
 6. `git reset --hard HEAD`: go back to last commit
 7. `git reset --hard <SHA1>`: go back to specific commit
 8. `git add -u`: update all your changes
+9. `git checkout master`: go back to master branch from detached status
 
 ### Amend
 1. `git commit --amend`: Combine the staged changes with the previous commit and replace the previous commit with the resulting snapshot. Running this when there is nothing staged lets you edit the previous commit’s message without altering its snapshot.

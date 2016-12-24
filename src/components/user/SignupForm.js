@@ -1,7 +1,6 @@
 import React from 'react';
 import * as userActions from '../../actions/userActions';
 import {connect} from 'react-redux';
-import classnames from 'classnames';
 import validateInput from '../../../server/shared/validations/signup';
 import TextFieldGroup from '../common/TextFieldGroup';
 
@@ -14,7 +13,7 @@ class SignupForm extends React.Component {
       password: '',
       errors: {},
       isLoading: false
-    }
+    };
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -30,18 +29,21 @@ class SignupForm extends React.Component {
     if (!isValid) {
       this.setState({ errors });
     }
+    return isValid;
   }
 
   onSubmit(e) {
     e.preventDefault();
 
     if (this.isValid()) {
-      this.setState({errors: {} , isLoading: true})
+      this.setState({errors: {} , isLoading: true});
       // console.log(this.state);
       this.props.addUser(this.state)
                 .then(() => {},
-                      (err) => { this.setState( { errors : err.response.data, isLoading: false} )})
-                // .cacth(err => {console.log(err.response)})
+                      (err) => {
+                        this.setState( { errors : err.response.data, isLoading: false} );
+                      }
+                    );
     }
   }
 
@@ -82,23 +84,23 @@ class SignupForm extends React.Component {
           </button>
         </div>
       </form>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    return {};
+const mapStateToProps = () => {
+  return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-      addUser: state => dispatch(userActions.addUser(state)),
-    };
+  return {
+    addUser: state => dispatch(userActions.addUser(state)),
+  };
 };
 
 
-SignupForm.PropTypes = {
-  addUser: React.PropTypes.func.isRequired,
-}
+SignupForm.propTypes = {
+  addUser: React.PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupForm);

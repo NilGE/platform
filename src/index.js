@@ -6,7 +6,6 @@ import { Router, browserHistory } from 'react-router';
 import routes from './routes';
 import configureStore from './store/configureStore';
 import * as bookActions from './actions/bookActions';
-import * as userActions from './actions/userActions';
 
 const store = configureStore();
 store.dispatch(bookActions.fetchBooks());

@@ -30,4 +30,8 @@ const App = (props) => {
   );
 };
 
+App.propTypes = {
+  children: React.PropTypes.object.isRequired
+};
+
 export default App;
