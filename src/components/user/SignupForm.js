@@ -39,7 +39,7 @@ class SignupForm extends React.Component {
       this.setState({errors: {} , isLoading: true});
       // console.log(this.state);
       this.props.addUser(this.state)
-                .then(() => {},
+                .then(() => { this.context.router.push('/');},
                       (err) => {
                         this.setState( { errors : err.response.data, isLoading: false} );
                       }
@@ -101,6 +101,10 @@ const mapDispatchToProps = (dispatch) => {
 
 SignupForm.propTypes = {
   addUser: React.PropTypes.func.isRequired
+};
+
+SignupForm.contextTypes = {
+  router: React.PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupForm);
