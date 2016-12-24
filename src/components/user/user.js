@@ -11,16 +11,16 @@ class User extends React.Component {
         <div>
           <table className="table">
             <thead>
-              <th>
-                <td>User</td>
-                <td></td>
-              </th>
+              <tr>
+                <th>User Name</th>
+                <th>Email</th>
+              </tr>
             </thead>
             <tbody>
-            {this.props.users.map(user => <tr key={user._id}>
-              <td>{user.username}</td>
-              <td>{user.email}</td>
-            </tr> )}
+              {this.props.users.map(user => <tr key={user._id}>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+              </tr> )}
             </tbody>
           </table>
         </div>
