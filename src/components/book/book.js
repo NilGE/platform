@@ -21,10 +21,10 @@ class Book extends React.Component{
           <h3>Books</h3>
           <table className="table">
             <thead>
-              <th>
-                <td>Title</td>
-                <td></td>
-              </th>
+              <tr>
+                <th>Title</th>
+                <th></th>
+              </tr>
             </thead>
             <tbody>
 

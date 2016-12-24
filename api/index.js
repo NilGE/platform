@@ -27,7 +27,7 @@ router.get('/books', (req, res) => {
 
 router.post('/books', (req, res) => {
 	new Books(req.body).save()
-										 .then(doc => res.send({ newBook: doc }))
+										 .then(doc => res.send(doc))
 										 .catch(console.error);
 });
 
