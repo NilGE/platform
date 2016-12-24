@@ -10,7 +10,6 @@ class Book extends React.Component{
   }
 
   submitBook(input){
-    console.log(input);
     this.props.createBook(input);
   }
 
@@ -56,7 +55,6 @@ const mapStateToProps = (state, ownProps) => {
 
 // Maps actions to props
 const mapDispatchToProps = (dispatch) => {
-  console.log('aaaaa');
   return {
   // You can now say this.props.createBook
     createBook: book => dispatch(bookActions.createBook(book))

@@ -28,7 +28,6 @@ export const fetchBooks = () => {
 };
 
 export const createBookSuccess = (book) => {
-  console.log('createBook: ' + book);
   return {
     type: 'CREATE_BOOK_SUCCESS',
     book
@@ -41,7 +40,6 @@ export const createBook = (book) => {
       .then(response => {
         // Dispatch a synchronous action
         // to handle data
-        console.log('response.data: '+response.data);
         dispatch(createBookSuccess(response.data));
       })
       .catch(error => {
