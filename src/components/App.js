@@ -1,6 +1,6 @@
 import React  from 'react';
 import {Link} from 'react-router';
-
+import FlashMessageList from './flash/FlashMessageList';
 const App = (props) => {
   return (
     <div className="container">
@@ -23,6 +23,7 @@ const App = (props) => {
           </div>
         </div>
       </nav>
+      <FlashMessageList />
       {/* Each smaller components */}
       {props.children}
     </div>
