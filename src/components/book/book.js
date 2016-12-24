@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BookForm from './BookForm';
-import { Link } from 'react-router';
 import * as bookActions from '../../actions/bookActions';
 
 class Book extends React.Component{
@@ -14,7 +13,6 @@ class Book extends React.Component{
   }
 
   render(){
-    let titleInput;
     return(
       <div className="row">
         <div className="col-md-6">
@@ -41,12 +39,12 @@ class Book extends React.Component{
          <BookForm submitBook={this.submitBook.bind(this)} />
         </div>
       </div>
-    )
+    );
   }
 }
 
 // Maps state from store to props
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     // You can now say this.props.books
     books: state.books
@@ -59,6 +57,11 @@ const mapDispatchToProps = (dispatch) => {
   // You can now say this.props.createBook
     createBook: book => dispatch(bookActions.createBook(book))
   };
+};
+
+Book.propTypes = {
+  createBook: React.PropTypes.func.isRequired,
+  books: React.PropTypes.array.isRequired
 };
 
 // Use connect to put them together  <td><Link to={`/books/${b.id}`}>View</Link></td>
