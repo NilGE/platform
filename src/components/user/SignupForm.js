@@ -11,6 +11,7 @@ class SignupForm extends React.Component {
       username: '',
       email: '',
       password: '',
+      passwordConfirmation: '',
       errors: {},
       isLoading: false
     };
@@ -37,7 +38,6 @@ class SignupForm extends React.Component {
 
     if (this.isValid()) {
       this.setState({errors: {} , isLoading: true});
-      // console.log(this.state);
       this.props.addUser(this.state)
                 .then(() => { this.context.router.push('/');},
                       (err) => {
@@ -75,6 +75,15 @@ class SignupForm extends React.Component {
           onChange={this.onChange}
           value={this.state.password}
           field="password"
+          type="password"
+        />
+
+        <TextFieldGroup
+          error={errors.passwordConfirmation}
+          label="Password Confirmation"
+          onChange={this.onChange}
+          value={this.state.passwordConfirmation}
+          field="passwordConfirmation"
           type="password"
         />
 

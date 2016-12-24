@@ -26,7 +26,6 @@ router.post('/addUser', (req, res) => {
 	if (!isValid) {
 		res.status(400).json(errors);
 	} else {
-		console.log(req.body);
 		new User(req.body).save()
 											.then(doc => res.send({ userinfo: doc }))
 					 						.catch(console.error);

@@ -16,12 +16,12 @@ export default function validateInput(data) {
 		errors.password = 'This field is required';
 	}
 
-	// if (Validator.isNull(data.passwordConfirmation)) {
-	// 	errors.passwordConfirmation = 'This field is required';
-	// }
-	// if (!Validator.equals(data.password, data.passwordConfirmation)) {
-	// 	errors.passwordConfirmation = 'Passwords must match';
-	// }
+	if (Validator.isEmpty(data.passwordConfirmation)) {
+		errors.passwordConfirmation = 'This field is required';
+	}
+	if (!Validator.equals(data.password, data.passwordConfirmation)) {
+		errors.passwordConfirmation = 'Passwords must match';
+	}
 
 	return {
 		errors,
