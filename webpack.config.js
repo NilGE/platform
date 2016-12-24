@@ -1,18 +1,32 @@
+import webpack from 'webpack';
+
 module.exports = {
-	entry: './src/index.js',
+	devtools: 'evel-source-map',
+	entry: [
+		'webpack-hot-middleware/client',
+		'./src/index.js'
+	],
 	output: {
 		path: __dirname + '/public',
-		filename: 'bundle.js'
+		filename: 'bundle.js',
+		publicPath: '/'
 	},
+	plugins: [
+		new webpack.NoErrorsPlugin(),
+		new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.HotModuleReplacementPlugin()
+	],
 	module: {
 		loaders: [
 			{
 				test: /\.json$/,
+				include: __dirname + '/src',
 				loader: 'json-loader'
 			},
 			{
 				test: /\.js$/,
-				loader: 'babel-loader'
+				exclude: /node_modules/,
+				loaders: ['react-hot', 'babel']
 			}
 		]
 	}
