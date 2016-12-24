@@ -1,6 +1,4 @@
 import React from 'react';
-import * as userActions from '../../actions/userActions';
-import {connect} from 'react-redux';
 import validateInput from '../../../server/shared/validations/signup';
 import TextFieldGroup from '../common/TextFieldGroup';
 
@@ -38,12 +36,16 @@ class SignupForm extends React.Component {
 
     if (this.isValid()) {
       this.setState({errors: {} , isLoading: true});
-      this.props.addUser(this.state)
-                .then(() => { this.context.router.push('/');},
-                      (err) => {
-                        this.setState( { errors : err.response.data, isLoading: false} );
-                      }
-                    );
+      this.props.addUser(this.state).then(
+        () => {
+          this.props.addFlashMessage({
+            type: 'success',
+            text: 'You signed up successfully. Welcome!'
+          });
+          this.context.router.push('/');
+        },
+          (err) => this.setState( { errors : err.response.data, isLoading: false} )
+        );
     }
   }
 
@@ -97,23 +99,13 @@ class SignupForm extends React.Component {
   }
 }
 
-const mapStateToProps = () => {
-  return {};
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addUser: state => dispatch(userActions.addUser(state)),
-  };
-};
-
-
 SignupForm.propTypes = {
-  addUser: React.PropTypes.func.isRequired
+  addUser: React.PropTypes.func.isRequired,
+  addFlashMessage: React.PropTypes.func.isRequired
 };
 
 SignupForm.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignupForm);
+export default SignupForm;
