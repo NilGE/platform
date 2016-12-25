@@ -9,7 +9,6 @@ import * as bookActions from './actions/bookActions';
 
 const store = configureStore();
 store.dispatch(bookActions.fetchBooks());
-// store.dispatch(userActions.fetchUsers());
 
 render(
   <Provider store={store}>

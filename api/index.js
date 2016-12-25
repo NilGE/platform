@@ -26,9 +26,13 @@ router.post('/addUser', (req, res) => {
 	if (!isValid) {
 		res.status(400).json(errors);
 	} else {
-		new User(req.body).save()
-											.then(doc => res.send({ userinfo: doc }))
-					 						.catch(console.error);
+		const { username, password, email } = req.body;
+		var newUser = new User();
+		newUser.username = username;
+		newUser.email = email;
+		newUser.password = newUser.generateHash(password);
+		newUser.save().then(doc => res.send({ userinfo: doc }))
+					 				.catch(err => res.status(500).send({ error : err }))
 	}
 });
 

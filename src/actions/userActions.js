@@ -30,7 +30,7 @@ export const fetchUsers = () => {
 export const addUserSuccess = (user) => {
   return {
     type: 'ADD_USER_SUCCESS',
-    item
+    user
   }
 };
 // Async add a user

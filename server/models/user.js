@@ -9,4 +9,15 @@ const userLocalSchema = new Schema({
     password: {type: String, required: true}
 }, {collection: "userLocal"});
 
+// methods ======================
+// generating a hash
+userLocalSchema.methods.generateHash = password => {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+// checking if password is valid
+userLocalSchema.methods.validPassword = password => {
+    return bcrypt.compareSync(password, this.password);
+};
+
 export default mongoose.model('User', userLocalSchema);
