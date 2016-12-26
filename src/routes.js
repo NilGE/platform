@@ -9,7 +9,7 @@ import SignupPage from './components/user/SignupPage';
 import LoginPage from './components/user/LoginPage';
 import App from './components/App';
 import NewEventPage from './components/events/NewEventPage';
-
+import requireAuth from './utils/requireAuth';
 
 export default (
   <Route path="/" component={App}>
@@ -20,6 +20,6 @@ export default (
     <Route path="/user" component={User}></Route>
     <Route path="/signup" component={SignupPage}></Route>
     <Route path="/login" component={LoginPage}></Route>
-    <Route path='/new-event' component={NewEventPage} />
+    <Route path='/new-event' component={requireAuth(NewEventPage)} />
   </Route>
 );
