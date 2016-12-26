@@ -1,8 +1,8 @@
 import express from 'express';
 import User from '../server/models/user';
 import Books from '../server/models/book';
-import validateInput from '../server/shared/validations/signup';
-
+import signupValidation from '../server/shared/validations/signup';
+import isEmpty from 'lodash/isEmpty';
 const router = express.Router();
 
 /*
@@ -21,19 +21,41 @@ router.get('/user/:username', (req, res) => {
       .catch(console.error);
 });
 
+const validateInput = (data, validation) => {
+	let { errors } = validation(data);
+	return User.findOne().or([{ 'username': data.username },  {'email': data.email }])
+						 .then(user => {
+							 if (user) {
+								 if (user.username === data.username) {
+									 console.log(user.username);
+									 errors.username = 'There is user with such User Name';
+								 }
+								 if (user.email === data.email) {
+									 console.log(user.email);
+									 errors.email = "There is user with such Email";
+								 }
+							 }
+							 return {
+					 			errors,
+					 			isValid: isEmpty(errors)
+					 		};
+						 });
+};
+
 router.post('/addUser', (req, res) => {
-	const { errors, isValid } = validateInput(req.body);
-	if (!isValid) {
-		res.status(400).json(errors);
-	} else {
-		const { username, password, email } = req.body;
-		var newUser = new User();
-		newUser.username = username;
-		newUser.email = email;
-		newUser.password = newUser.generateHash(password);
-		newUser.save().then(doc => res.send({ userinfo: doc }))
-					 				.catch(err => res.status(500).send({ error : err }))
-	}
+	validateInput(req.body, signupValidation).then(({ errors, isValid }) => {
+		if (!isValid) {
+			res.status(400).send(errors);
+		} else {
+			const { username, password, email } = req.body;
+			var newUser = new User();
+			newUser.username = username;
+			newUser.email = email;
+			newUser.password = newUser.generateHash(password);
+			newUser.save().then(doc => res.send({ userinfo: doc }))
+						 				.catch(err => res.status(500).send({ error : err }))
+		}
+	});
 });
 
 /*
