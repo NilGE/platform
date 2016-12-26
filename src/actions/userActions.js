@@ -1,5 +1,5 @@
 import axios from 'axios';
-import jwt from 'jsonwebtoken';
+import jwtDecode from 'jwt-decode';
 import setAuthorizationToken from '../utils/setAuthorizationToken';
 import { SET_CURRENT_USER } from './actionTypes';
 
@@ -58,7 +58,7 @@ export const login = (data) => {
       const token = res.data.token;
       localStorage.setItem('jwtToken', token);
       setAuthorizationToken(token);
-      dispatch(setCurrentUserSuccess(jwt.decode(token)));
+      dispatch(setCurrentUserSuccess(jwtDecode(token)));
     });
   };
 };

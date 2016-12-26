@@ -29,9 +29,5 @@ module.exports = {
 				loaders: ['react-hot', 'babel']
 			}
 		]
-	},
-	node: {
-		net: 'empty',
-		dns: 'empty'
 	}
 };

@@ -7,7 +7,7 @@ import routes from './routes';
 import configureStore from './store/configureStore';
 import * as bookActions from './actions/bookActions';
 import setAuthorizationToken from './utils/setAuthorizationToken';
-import jwt from 'jsonwebtoken';
+import jwtDecode from 'jwt-decode';
 import { setCurrentUserSuccess } from './actions/userActions';
 
 const store = configureStore();
@@ -15,7 +15,7 @@ store.dispatch(bookActions.fetchBooks());
 
 if (localStorage.jwtToken) {
   setAuthorizationToken(localStorage.jwtToken);
-  store.dispatch(setCurrentUserSuccess(jwt.decode(localStorage.jwtToken)));
+  store.dispatch(setCurrentUserSuccess(jwtDecode(localStorage.jwtToken)));
 }
 
 render(
