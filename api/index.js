@@ -25,23 +25,22 @@ router.get('/user/:username', (req, res) => {
 
 const validateInput = (data, validation) => {
 	let { errors } = validation(data);
-	return User.findOne().or([{ 'username': data.username },  {'email': data.email }])
-						 .then(user => {
-							 if (user) {
-								 if (user.username === data.username) {
-									 console.log(user.username);
-									 errors.username = 'There is user with such Username';
-								 }
-								 if (user.email === data.email) {
-									 console.log(user.email);
-									 errors.email = "There is user with such Email";
-								 }
-							 }
-							 return {
-					 			errors,
-					 			isValid: isEmpty(errors)
-					 		};
-						 });
+	return User.findOne().or([{ 'username': data.username },  {'email': data.email }]).then(user => {
+		 if (user) {
+			 if (user.username === data.username) {
+				 console.log(user.username);
+				 errors.username = 'There is user with such Username';
+			 }
+			 if (user.email === data.email) {
+				 console.log(user.email);
+				 errors.email = "There is user with such Email";
+			 }
+		 }
+		 return {
+ 			errors,
+ 			isValid: isEmpty(errors)
+ 		};
+	 });
 };
 
 router.post('/addUser', (req, res) => {

@@ -1,4 +1,4 @@
-import webpack from 'webpack';
+ import webpack from 'webpack';
 
 module.exports = {
 	devtools: 'evel-source-map',
@@ -29,5 +29,9 @@ module.exports = {
 				loaders: ['react-hot', 'babel']
 			}
 		]
+	},
+	node: {
+		net: 'empty',
+		dns: 'empty'
 	}
 };
