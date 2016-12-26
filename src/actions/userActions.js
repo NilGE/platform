@@ -62,3 +62,11 @@ export const login = (data) => {
     });
   };
 };
+
+export const logout = () => {
+  return dispatch => {
+    localStorage.removeItem('jwtToken');
+    setAuthorizationToken(false);
+    dispatch(setCurrentUserSuccess({}));
+  };
+};
