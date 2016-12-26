@@ -8,6 +8,8 @@ export const logStars = function(message) {
 	console.info('*******');
 };
 
+export const jwtSecret = 'somesecretkeyforjsonwebtoekn';
+
 export default {
 	mongodbUri: 'mongodb://localhost:27017/platform',
 	port: env.PORT || 8080,

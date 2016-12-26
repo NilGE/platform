@@ -11,12 +11,12 @@ const userLocalSchema = new Schema({
 
 // methods ======================
 // generating a hash
-userLocalSchema.methods.generateHash = password => {
+userLocalSchema.methods.generateHash = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
 // checking if password is valid
-userLocalSchema.methods.validPassword = password => {
+userLocalSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 };
 

@@ -39,3 +39,9 @@ export const addUser = (user) => {
     return axios.post('/api/addUser', user);
   };
 };
+
+export const login = (data) => {
+  return dispatch => {
+    return axios.post('/api/auth', data);
+  };
+};

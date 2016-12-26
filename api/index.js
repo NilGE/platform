@@ -3,6 +3,8 @@ import User from '../server/models/user';
 import Books from '../server/models/book';
 import signupValidation from '../server/shared/validations/signup';
 import isEmpty from 'lodash/isEmpty';
+import jwt from 'jsonwebtoken';
+import { jwtSecret } from '../config/config';
 const router = express.Router();
 
 /*
@@ -28,7 +30,7 @@ const validateInput = (data, validation) => {
 							 if (user) {
 								 if (user.username === data.username) {
 									 console.log(user.username);
-									 errors.username = 'There is user with such User Name';
+									 errors.username = 'There is user with such Username';
 								 }
 								 if (user.email === data.email) {
 									 console.log(user.email);
@@ -56,6 +58,26 @@ router.post('/addUser', (req, res) => {
 						 				.catch(err => res.status(500).send({ error : err }))
 		}
 	});
+});
+
+router.post('/auth', (req, res) => {
+	const { identifier, password } = req.body;
+	User.findOne().or([{ 'username': identifier },  {'email': identifier }])
+			.then(user => {
+				if (user) {
+					if (user.validPassword(password)) {
+						const token = jwt.sign({
+							id: user._id,
+							username: user.username
+						}, jwtSecret);
+						res.send({ token });
+					} else {
+						res.status(401).send({ errors: {form: 'Invalid Credentials'} });
+					}
+				} else {
+					res.status(401).send({ errors: {form: 'Invalid Credentials'} });
+				}
+			});
 });
 
 /*

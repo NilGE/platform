@@ -6,6 +6,7 @@ import Book from './components/book/book';
 import BookDetailsPage from './components/book/bookDetailsPage';
 import User from './components/user/user';
 import SignupPage from './components/user/SignupPage';
+import LoginPage from './components/user/LoginPage';
 import App from './components/App';
 
 
@@ -18,5 +19,6 @@ export default (
     <Route path="/books/:id" component={BookDetailsPage}></Route>
     <Route path="/user" component={User}></Route>
     <Route path="/signup" component={SignupPage}></Route>
+    <Route path="/login" component={LoginPage}></Route>
   </Route>
 );
