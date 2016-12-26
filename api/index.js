@@ -5,6 +5,7 @@ import signupValidation from '../server/shared/validations/signup';
 import isEmpty from 'lodash/isEmpty';
 import jwt from 'jsonwebtoken';
 import { jwtSecret } from '../config/config';
+import authenticate from '../server/middlewares/authenticate';
 const router = express.Router();
 
 /*
@@ -93,6 +94,14 @@ router.post('/books', (req, res) => {
 	new Books(req.body).save()
 										 .then(doc => res.send(doc))
 										 .catch(console.error);
+});
+
+/*
+Event AP
+*/
+
+router.post('/events', authenticate, (req, res) => {
+	res.status(201).send({ success: true });
 });
 
 export default router;

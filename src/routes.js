@@ -8,7 +8,7 @@ import User from './components/user/user';
 import SignupPage from './components/user/SignupPage';
 import LoginPage from './components/user/LoginPage';
 import App from './components/App';
-
+import NewEventPage from './components/events/NewEventPage';
 
 
 export default (
@@ -20,5 +20,6 @@ export default (
     <Route path="/user" component={User}></Route>
     <Route path="/signup" component={SignupPage}></Route>
     <Route path="/login" component={LoginPage}></Route>
+    <Route path='/new-event' component={NewEventPage} />
   </Route>
 );
