@@ -4,7 +4,6 @@ import { addFlashMessage } from '../actions/flashMessageActions';
 export default function(ComposedComponent) {
   class Authenticate extends React.Component {
     componentWillMount() {
-      console.log('come in');
       if (!this.props.isAuthenticated) {
         this.props.addFlashMessage({
           type: 'error',
@@ -30,7 +29,7 @@ export default function(ComposedComponent) {
   const mapStateToProps = (state) => {
     return {
       isAuthenticated: state.auth.isAuthenticated
-    }
+    };
   };
 
   Authenticate.propTypes = {

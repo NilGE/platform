@@ -1,28 +1,26 @@
 import express from 'express';
-import User from '../server/models/user';
-import Books from '../server/models/book';
-import signupValidation from '../server/shared/validations/signup';
+import User from '../models/user';
+import signupValidation from '../shared/validations/signup';
 import isEmpty from 'lodash/isEmpty';
 import jwt from 'jsonwebtoken';
-import { jwtSecret } from '../config/config';
-import authenticate from '../server/middlewares/authenticate';
+import { jwtSecret } from '../../config/config';
+import authenticate from '../middlewares/authenticate';
+
 const router = express.Router();
 
 /*
-User API
+get all users username and email
 */
-router.get('/users', (req, res) => {
+router.get('/users', authenticate, (req, res) => {
 	User.find({})
 			.select('username email')
 			.then(doc => res.send(doc))
 			.catch(console.error);
 });
 
-router.get('/user/:username', (req, res) => {
-  User.findOne({ 'username': req.params.username})
-      .then(doc => res.send({ userinfo: doc }))
-      .catch(console.error);
-});
+/*
+user signup
+*/
 
 const validateInput = (data, validation) => {
 	let { errors } = validation(data);
@@ -44,7 +42,7 @@ const validateInput = (data, validation) => {
 	 });
 };
 
-router.post('/addUser', (req, res) => {
+router.post('/signup', (req, res) => {
 	validateInput(req.body, signupValidation).then(({ errors, isValid }) => {
 		if (!isValid) {
 			res.status(400).send(errors);
@@ -60,6 +58,10 @@ router.post('/addUser', (req, res) => {
 	});
 });
 
+
+/*
+user authentication
+*/
 router.post('/auth', (req, res) => {
 	const { identifier, password } = req.body;
 	User.findOne().or([{ 'username': identifier },  {'email': identifier }])
@@ -78,30 +80,6 @@ router.post('/auth', (req, res) => {
 					res.status(401).send({ errors: {form: 'Invalid Credentials'} });
 				}
 			});
-});
-
-/*
-Book API
-*/
-router.get('/books', (req, res) => {
-	Books.find({})
-			//  .select('Title Price Author')
-			 .then(doc => res.send(doc))
-			 .catch(console.error);
-});
-
-router.post('/books', (req, res) => {
-	new Books(req.body).save()
-										 .then(doc => res.send(doc))
-										 .catch(console.error);
-});
-
-/*
-Event AP
-*/
-
-router.post('/events', authenticate, (req, res) => {
-	res.status(201).send({ success: true });
 });
 
 export default router;

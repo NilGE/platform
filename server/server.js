@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import config from '../config/config';
-import apiRouter from '../api/index';
+import apiRouter from './api/index';
 import sassMiddleware from 'node-sass-middleware';
 import path from 'path';
 

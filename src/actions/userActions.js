@@ -16,7 +16,7 @@ export const fetchUsers = () => {
   // that dispatches an action at a later time
   return (dispatch) => {
     // Returns a promise
-    return axios.get('/api/users')
+    return axios.get('/api/user/users')
       .then(response => {
         // console.log(response.data);
         // Dispatch another action
@@ -39,7 +39,7 @@ export const addUserSuccess = (user) => {
 // Async add a user
 export const addUser = (user) => {
   return (dispatch) => {
-    return axios.post('/api/addUser', user);
+    return axios.post('/api/user/signup', user);
   };
 };
 
@@ -54,7 +54,7 @@ export const setCurrentUserSuccess = (user) => {
 
 export const login = (data) => {
   return dispatch => {
-    return axios.post('/api/auth', data).then(res => {
+    return axios.post('/api/user/auth', data).then(res => {
       const token = res.data.token;
       localStorage.setItem('jwtToken', token);
       setAuthorizationToken(token);

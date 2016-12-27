@@ -17,7 +17,7 @@ export default (
     <Route path="/about" component={About}></Route>
     <Route path="/books" component={Book}></Route>
     <Route path="/books/:id" component={BookDetailsPage}></Route>
-    <Route path="/user" component={User}></Route>
+    <Route path="/user" component={requireAuth(User)}></Route>
     <Route path="/signup" component={SignupPage}></Route>
     <Route path="/login" component={LoginPage}></Route>
     <Route path='/new-event' component={requireAuth(NewEventPage)} />
