@@ -13,9 +13,26 @@ class App extends React.Component {
     const { isAuthenticated } = this.props.auth;
 
     const userLink = (
-      <ul className="nav navbar-nav navbar-right">
-        <li><a href="#" onClick={this.logout.bind(this)}>Logout</a></li>
-      </ul>
+      <div>
+        <div className="col-sm-3 col-md-3">
+          <form className="navbar-form form-inline" role="search">
+            <div className="input-group">
+                <input type="text" className="form-control" placeholder="Search" name="q" />
+                <div className="input-group-btn">
+                    <button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
+                </div>
+            </div>
+          </form>
+        </div>
+        <ul className="nav navbar-nav">
+          <div className="navbar-btn">
+            <li><a href="#" className="btn btn-success col-md-offset-3">Add New Product</a></li>
+          </div>
+        </ul>
+        <ul className="nav navbar-nav navbar-right">
+          <li><a href="#" onClick={this.logout.bind(this)}>Logout</a></li>
+        </ul>
+      </div>
     );
 
     const guestLink = (
@@ -33,10 +50,10 @@ class App extends React.Component {
             </div>
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul className="nav navbar-nav">
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/books">Book</Link></li>
-                <li><Link to="/user">User</Link></li>
+                <li><Link to="/about">Houses</Link></li>
+                <li><Link to="/books">Cars</Link></li>
+                <li><Link to="/books">Appliances</Link></li>
+                <li><Link to="/user">Others</Link></li>
               </ul>
               { isAuthenticated ? userLink : guestLink }
             </div>
