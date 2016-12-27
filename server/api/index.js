@@ -2,6 +2,7 @@ import express from 'express';
 import User from '../models/user';
 import Books from '../models/book';
 import userApi from './userApi';
+import productApi from './product';
 import authenticate from '../middlewares/authenticate';
 const router = express.Router();
 
@@ -27,11 +28,16 @@ router.post('/books', (req, res) => {
 });
 
 /*
-Event AP
+Event API
 */
 
 router.post('/events', authenticate, (req, res) => {
 	res.status(201).send({ success: true });
 });
+
+/*
+Product API
+*/
+router.use('/product', productApi);
 
 export default router;

@@ -26,7 +26,7 @@ class App extends React.Component {
         </div>
         <ul className="nav navbar-nav">
           <div className="navbar-btn">
-            <li><a href="#" className="btn btn-success col-md-offset-3">Add New Product</a></li>
+            <li><Link to="/new-product" className="btn btn-success col-md-offset-3">ADD NEW</Link></li>
           </div>
         </ul>
         <ul className="nav navbar-nav navbar-right">
@@ -51,7 +51,7 @@ class App extends React.Component {
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul className="nav navbar-nav">
                 <li><Link to="/about">Houses</Link></li>
-                <li><Link to="/books">Cars</Link></li>
+                <li><Link to="/about">Cars</Link></li>
                 <li><Link to="/books">Appliances</Link></li>
                 <li><Link to="/user">Others</Link></li>
               </ul>
