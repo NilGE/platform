@@ -4,7 +4,7 @@ module.exports = {
 	devtools: 'evel-source-map',
 	entry: [
 		'webpack-hot-middleware/client',
-		'./src/index.js'
+		'./client/index.js'
 	],
 	output: {
 		path: __dirname + '/public',
@@ -20,7 +20,7 @@ module.exports = {
 		loaders: [
 			{
 				test: /\.json$/,
-				include: __dirname + '/src',
+				include: __dirname + '/client',
 				loader: 'json-loader'
 			},
 			{
