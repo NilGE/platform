@@ -24,9 +24,23 @@ class App extends React.Component {
             </div>
           </form>
         </div>
+
         <ul className="nav navbar-nav">
           <div className="navbar-btn">
-            <li><Link to="/new-product" className="btn btn-success col-md-offset-3">ADD NEW</Link></li>
+            <div className="btn-group">
+              <button type="button" className="btn btn-success">Add New</button>
+              <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span className="caret"></span>
+                <span className="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul className="dropdown-menu">
+                <li><Link to="/new-product">House</Link></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" className="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </div>
           </div>
         </ul>
         <ul className="nav navbar-nav navbar-right">
