@@ -34,7 +34,7 @@ class App extends React.Component {
                 <span className="sr-only">Toggle Dropdown</span>
               </button>
               <ul className="dropdown-menu">
-                <li><Link to="/new-product">House</Link></li>
+                <li><Link to="/new-house">House</Link></li>
                 <li><a href="#">Another action</a></li>
                 <li><a href="#">Something else here</a></li>
                 <li role="separator" className="divider"></li>

@@ -1,5 +1,7 @@
 import React from 'react';
 import TextFieldGroup from '../../common/TextFieldGroup';
+import { addHouseSuccess, createHouse } from '../../../actions/houseActions';
+import { connect } from 'react-redux';
 
 class HouseForm extends React.Component {
   constructor(props){
@@ -30,18 +32,17 @@ class HouseForm extends React.Component {
     // Call method from parent component
     // to handle submission
 
-    this.props.submitNew(this.state);
-    // Reset form
-    e.target.reset();
-
+    createHouse(this.state).then(res => {
+      this.props.addHouseSuccess(res.data);
+      this.context.router.push('/house-detail');
+    });
   }
 
   render() {
     const { errors } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
-        <h1>Create New Product</h1>
-
+        <h1>House Information</h1>
 
           <TextFieldGroup
             error={errors.address1}
@@ -115,8 +116,19 @@ class HouseForm extends React.Component {
     );
   }
 }
-HouseForm.propTypes = {
-  submitNew: React.PropTypes.func.isRequired
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addHouseSuccess: state => dispatch(addHouseSuccess(state))
+  };
 };
 
-export default HouseForm;
+HouseForm.propTypes = {
+  addHouseSuccess: React.PropTypes.func.isRequired
+};
+
+HouseForm.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
+
+export default connect(null, mapDispatchToProps)(HouseForm);

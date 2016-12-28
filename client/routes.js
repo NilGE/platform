@@ -9,7 +9,8 @@ import SignupPage from './components/user/SignupPage';
 import LoginPage from './components/user/LoginPage';
 import App from './components/App';
 import NewEventPage from './components/events/NewEventPage';
-import NewProductPage from './components/product/NewProductPage';
+import NewHousePage from './components/product/house/NewHousePage';
+import HouseDetailPage from './components/product/house/HouseDetailPage';
 import requireAuth from './utils/requireAuth';
 
 export default (
@@ -21,7 +22,8 @@ export default (
     <Route path="/user" component={requireAuth(User)}></Route>
     <Route path="/signup" component={SignupPage}></Route>
     <Route path="/login" component={LoginPage}></Route>
-    <Route path="/new-product" component={NewProductPage}></Route>
+    <Route path="/new-house" component={NewHousePage}></Route>
     <Route path='/new-event' component={requireAuth(NewEventPage)} />
+    <Route path='/house-detail' component={HouseDetailPage} />
   </Route>
 );
