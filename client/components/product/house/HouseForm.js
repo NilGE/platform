@@ -7,12 +7,13 @@ class HouseForm extends React.Component {
     this.state = {
       address1: '',
       address2: '',
-      bathroom: '',
       bedroom: '',
+      bathroom: '',
       size: '',
       facilities: '',
       price: '',
       errors: {},
+      comments: '',
       isLoading: false
     };
 
@@ -26,13 +27,24 @@ class HouseForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
+
+    // Call method from parent component
+    // to handle submission
+
+    this.props.submitNew(this.state);
+    // Reset form
+    e.target.reset();
+
   }
+
+
 
   render() {
     const { errors } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
         <h1>Create New Product</h1>
+
 
           <TextFieldGroup
             error={errors.address1}
@@ -42,6 +54,7 @@ class HouseForm extends React.Component {
             field="address1"
           />
 
+
           <TextFieldGroup
             error={errors.address2}
             label="Address2"
@@ -50,21 +63,26 @@ class HouseForm extends React.Component {
             field="address2"
           />
 
-          <TextFieldGroup
-            error={errors.bathroom}
-            label="Bathroom"
-            onChange={this.onChange}
-            value={this.state.bathroom}
-            field="bathroom"
-          />
+          <div className="row">
+            <div className="form-group col-md-6">
+              <label>Bedrooms</label>
+                <select className="form-control" onChange={this.onChange} value={this.state.bedroom} name="bedroom">
+                  <option hidden> </option>
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                </select>
 
-          <TextFieldGroup
-            error={errors.bedroom}
-            label="Bedroom"
-            onChange={this.onChange}
-            value={this.state.bedroom}
-            field="bedroom"
-          />
+            </div>
+            <div className="form-group col-md-6">
+              <label>Bathrooms</label>
+                <select className="form-control"  onChange={this.onChange} value={this.state.bathroom} name="bathroom">
+                  <option hidden> </option>
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                </select>
+            </div>
+          </div>
+
 
           <TextFieldGroup
             error={errors.size}
@@ -90,10 +108,22 @@ class HouseForm extends React.Component {
             field="price"
           />
 
+          <TextFieldGroup
+            error={errors.comments}
+            label="Comments"
+            onChange={this.onChange}
+            value={this.state.comments}
+            field="comments"
+          />
+
         <button type="submit" className="btn btn-primary btn-lg">Create</button>
+
       </form>
     );
   }
 }
+HouseForm.propTypes = {
+  submitNew: React.PropTypes.func.isRequired
+};
 
 export default HouseForm;
