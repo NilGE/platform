@@ -27,7 +27,6 @@ class HouseForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-
     // Call method from parent component
     // to handle submission
 
@@ -36,8 +35,6 @@ class HouseForm extends React.Component {
     e.target.reset();
 
   }
-
-
 
   render() {
     const { errors } = this.state;
@@ -108,16 +105,12 @@ class HouseForm extends React.Component {
             field="price"
           />
 
-          <TextFieldGroup
-            error={errors.comments}
-            label="Comments"
-            onChange={this.onChange}
-            value={this.state.comments}
-            field="comments"
-          />
+          <div className="form-group">
+            <label>Comment</label>
+            <textarea className="form-control" rows="5" onChange={this.onChange} value={this.state.comments} name="comments"></textarea>
+          </div>
 
         <button type="submit" className="btn btn-primary btn-lg">Create</button>
-
       </form>
     );
   }
