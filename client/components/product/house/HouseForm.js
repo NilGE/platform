@@ -2,6 +2,7 @@ import React from 'react';
 import TextFieldGroup from '../../common/TextFieldGroup';
 import { addHouseSuccess, createHouse } from '../../../actions/houseActions';
 import { connect } from 'react-redux';
+import Multiselect from 'react-bootstrap-multiselect';
 
 class HouseForm extends React.Component {
 
@@ -17,7 +18,8 @@ class HouseForm extends React.Component {
       price: '',
       errors: {},
       comments: '',
-      isLoading: false
+      isLoading: false,
+      list: [{value:'One42341234123412343243123',selected:true},{value:'Two4124123412141241234'},{value:'Three412412341234312'},{value:'Four',label:'Four Label'}]
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -44,7 +46,10 @@ class HouseForm extends React.Component {
     return (
       <form onSubmit={this.onSubmit}>
         <h1>House Information</h1>
-
+          <div className="form-group">
+            <label className="control-label">Facilities*</label>
+              <Multiselect data={this.state.list} buttonWidth="360px" multiple />
+          </div>
           <TextFieldGroup
             error={errors.address1}
             label="Address1*"
