@@ -4,6 +4,7 @@ import { addHouseSuccess, createHouse } from '../../../actions/houseActions';
 import { connect } from 'react-redux';
 
 class HouseForm extends React.Component {
+
   constructor(props){
     super(props);
     this.state = {
@@ -46,7 +47,7 @@ class HouseForm extends React.Component {
 
           <TextFieldGroup
             error={errors.address1}
-            label="Address1"
+            label="Address1*"
             onChange={this.onChange}
             value={this.state.address1}
             field="address1"
@@ -63,7 +64,7 @@ class HouseForm extends React.Component {
 
           <div className="row">
             <div className="form-group col-md-6">
-              <label>Bedrooms</label>
+              <label>Bedrooms*</label>
                 <select className="form-control" onChange={this.onChange} value={this.state.bedroom} name="bedroom">
                   <option hidden> </option>
                   <option value={1}>1</option>
@@ -72,7 +73,7 @@ class HouseForm extends React.Component {
 
             </div>
             <div className="form-group col-md-6">
-              <label>Bathrooms</label>
+              <label>Bathrooms*</label>
                 <select className="form-control"  onChange={this.onChange} value={this.state.bathroom} name="bathroom">
                   <option hidden> </option>
                   <option value={1}>1</option>
@@ -90,17 +91,33 @@ class HouseForm extends React.Component {
             field="size"
           />
 
-          <TextFieldGroup
-            error={errors.facilities}
-            label="Facilities"
-            onChange={this.onChange}
-            value={this.state.facilities}
-            field="facilities"
-          />
+          <div className="form-group">
+            <label className="control-label">Facilities*</label>
+              <select id="example-getting-started" className="form-control" onChange={this.onChange}  name="bathroom" multiple="multiple">
+                <option value={101}>Within Campus Security patrol perimeter </option>
+                <option value={102}>Gated building w/telephone entry</option>
+                <option value={103}>Free Parking</option>
+                <option value={104}>Parking with additional fee</option>
+                <option value={105}>School Bus Station on site</option>
+                <option value={106}>24-hour security cameras</option>
+                <option value={107}>Swimming pool</option>
+                <option value={108}>Gym</option>
+                <option value={109}>Study Room</option>
+                <option value={110}>Air-conditioned</option>
+                <option value={111}>On-site Laundry</option>
+                <option value={112}>2-3 blocks from Campus</option>
+                <option value={113}>Lots of closet space and built-in cabinets</option>
+                <option value={114}>Cable ready w/wireless internet access</option>
+                <option value={115}>Stove and refrigerator included</option>
+              </select>
+          </div>
+
+
+
 
           <TextFieldGroup
             error={errors.price}
-            label="Price"
+            label="Price*"
             onChange={this.onChange}
             value={this.state.price}
             field="price"
@@ -113,6 +130,10 @@ class HouseForm extends React.Component {
 
         <button type="submit" className="btn btn-primary btn-lg">Create</button>
       </form>
+
+
+
+
     );
   }
 }
