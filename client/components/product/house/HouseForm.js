@@ -19,7 +19,15 @@ class HouseForm extends React.Component {
       errors: {},
       comments: '',
       isLoading: false,
-      list: [{value:'One42341234123412343243123',selected:true},{value:'Two4124123412141241234'},{value:'Three412412341234312'},{value:'Four',label:'Four Label'}]
+      list: [{value:'Within Campus Security patrol perimeter'},
+      {value:'School Bus Station on site'},{value:'Free Parking'},
+      {value:'Parking with additional fee'},
+      {value:'Air-conditioned'},
+      {value:'On-site Laundry'},
+      {value:'Cable ready w/wireless internet access'},
+      {value:'Stove and refrigerator included'},
+      {value:'Swimming Pool'},
+      {value:'Gym'}]
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -45,11 +53,6 @@ class HouseForm extends React.Component {
     const { errors } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
-        <h1>House Information</h1>
-          <div className="form-group">
-            <label className="control-label">Facilities*</label>
-              <Multiselect data={this.state.list} buttonWidth="360px" multiple />
-          </div>
           <TextFieldGroup
             error={errors.address1}
             label="Address1*"
@@ -98,26 +101,8 @@ class HouseForm extends React.Component {
 
           <div className="form-group">
             <label className="control-label">Facilities*</label>
-              <select id="example-getting-started" className="form-control" onChange={this.onChange}  name="bathroom" multiple="multiple">
-                <option value={101}>Within Campus Security patrol perimeter </option>
-                <option value={102}>Gated building w/telephone entry</option>
-                <option value={103}>Free Parking</option>
-                <option value={104}>Parking with additional fee</option>
-                <option value={105}>School Bus Station on site</option>
-                <option value={106}>24-hour security cameras</option>
-                <option value={107}>Swimming pool</option>
-                <option value={108}>Gym</option>
-                <option value={109}>Study Room</option>
-                <option value={110}>Air-conditioned</option>
-                <option value={111}>On-site Laundry</option>
-                <option value={112}>2-3 blocks from Campus</option>
-                <option value={113}>Lots of closet space and built-in cabinets</option>
-                <option value={114}>Cable ready w/wireless internet access</option>
-                <option value={115}>Stove and refrigerator included</option>
-              </select>
+              <Multiselect data={this.state.list} buttonWidth="100%" multiple />
           </div>
-
-
 
 
           <TextFieldGroup
@@ -128,6 +113,7 @@ class HouseForm extends React.Component {
             field="price"
           />
 
+
           <div className="form-group">
             <label>Comment</label>
             <textarea className="form-control" rows="5" onChange={this.onChange} value={this.state.comments} name="comments"></textarea>
@@ -135,10 +121,6 @@ class HouseForm extends React.Component {
 
         <button type="submit" className="btn btn-primary btn-lg">Create</button>
       </form>
-
-
-
-
     );
   }
 }
