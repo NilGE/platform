@@ -50,6 +50,12 @@ class HouseForm extends React.Component {
     });
   }
 
+  componentDidMount() {
+    window.jQuery('#input-44').fileinput({
+      uploadUrl: '/file-upload-batch/2',
+      maxFilePreviewSize: 10240
+    });
+  }
 
   render() {
     const { errors } = this.state;
@@ -117,10 +123,8 @@ class HouseForm extends React.Component {
             field="price"
           />
 
-          <input type="file" accept="image/*" name="myPic" multiple />
-
           <label className="control-label">Select File</label>
-          <input id="input-44" name="input44[]" type="file" multiple className="file-loading" />
+          <input id="input-44" name="input44[]" type="file" ref="fileInput" multiple className="file-loading" />
           <div id="errorBlock" className="help-block"></div>
 
           <div className="form-group">

@@ -6,7 +6,7 @@ class NewHousePage extends React.Component {
     return (
       <div className="row">
         <h1 style={{textAlign: 'center'}}>House Information</h1>
-        <div className="col-md-4 col-md-offset-4">
+        <div className="col-md-6 col-md-offset-3">
           <HouseForm />
         </div>
       </div>
