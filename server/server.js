@@ -12,9 +12,14 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../webpack.config.js';
 
 const app = express();
+app.use(bodyParser.json());
+app.use(sassMiddleware({
+	src: path.join(__dirname, '../sass'),
+	dest: path.join(__dirname, '../public'),
+  // debug: true
+}));
 
 const compiler = webpack(webpackConfig);
-
 app.use(webpackMiddleware(compiler, {
   hot: true,
   publicPath: webpackConfig.output.publicPath,
@@ -32,17 +37,12 @@ mongoose.connect(config.mongodbUri, (error) => {
   }
 });
 
-app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 
 app.use('/api', apiRouter);
 
 app.use(express.static('public'));
 
-app.use(sassMiddleware({
-	src: path.join(__dirname, 'sass'),
-	dest: path.join(__dirname, 'public')
-}));
 
 app.get('*', (req, res) => {
   res.render('index', {
