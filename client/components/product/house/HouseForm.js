@@ -4,6 +4,7 @@ import { addHouseSuccess, createHouse } from '../../../actions/houseActions';
 import { connect } from 'react-redux';
 import Multiselect from 'react-bootstrap-multiselect';
 
+
 class HouseForm extends React.Component {
 
   constructor(props){
@@ -49,10 +50,13 @@ class HouseForm extends React.Component {
     });
   }
 
+
   render() {
     const { errors } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
+
+
           <TextFieldGroup
             error={errors.address1}
             label="Address1*"
@@ -113,6 +117,11 @@ class HouseForm extends React.Component {
             field="price"
           />
 
+          <input type="file" accept="image/*" name="myPic" multiple />
+
+          <label className="control-label">Select File</label>
+          <input id="input-44" name="input44[]" type="file" multiple className="file-loading" />
+          <div id="errorBlock" className="help-block"></div>
 
           <div className="form-group">
             <label>Comment</label>
