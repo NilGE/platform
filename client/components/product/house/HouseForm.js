@@ -15,7 +15,7 @@ class HouseForm extends React.Component {
       bedroom: '',
       bathroom: '',
       size: '',
-      facilities: '',
+      facilities: [],
       price: '',
       errors: {},
       comments: '',
