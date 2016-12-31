@@ -3,6 +3,7 @@ import TextFieldGroup from '../../common/TextFieldGroup';
 import { addHouseSuccess, createHouse } from '../../../actions/houseActions';
 import { connect } from 'react-redux';
 import Multiselect from 'react-bootstrap-multiselect';
+import classnames from 'classnames';
 
 
 class HouseForm extends React.Component {
@@ -82,7 +83,7 @@ class HouseForm extends React.Component {
 
           <div className="row">
             <div className="form-group col-md-6">
-              <label>Bedrooms*</label>
+              <label>Bedrooms <span className="required">*</span></label>
                 <select className="form-control" onChange={this.onChange} value={this.state.bedroom} name="bedroom">
                   <option hidden> </option>
                   <option value={1}>1</option>
@@ -91,7 +92,7 @@ class HouseForm extends React.Component {
 
             </div>
             <div className="form-group col-md-6">
-              <label>Bathrooms*</label>
+              <label>Bathrooms <span className="required">*</span></label>
                 <select className="form-control"  onChange={this.onChange} value={this.state.bathroom} name="bathroom">
                   <option hidden> </option>
                   <option value={1}>1</option>
@@ -100,28 +101,43 @@ class HouseForm extends React.Component {
             </div>
           </div>
 
-
-          <TextFieldGroup
-            error={errors.size}
-            label="Size"
-            onChange={this.onChange}
-            value={this.state.size}
-            field="size"
-          />
+          <div className="row">
+            <div className="form-group col-md-6">
+              <div className={classnames('form-group', { 'has-error': errors.size })}>
+                <label className="control-label">Size</label>
+                <div className="input-group">
+                  <input
+                    value={this.state.size}
+                    onChange={this.onChange}
+                    name="size"
+                    className="form-control"
+                  />
+                <span className="input-group-addon">ft</span>
+                </div>
+                {errors.size && <span className="help-block">{ errors.size }</span>}
+              </div>
+            </div>
+            <div className="form-group col-md-6">
+              <div className={classnames('form-group', { 'has-error': errors.prize })}>
+                <label className="control-label">Price*</label>
+                <div className="input-group">
+                  <span className="input-group-addon">$</span>
+                  <input
+                    value={this.state.price}
+                    onChange={this.onChange}
+                    name="price"
+                    className="form-control"
+                  />
+                </div>
+                {errors.prize && <span className="help-block">{ errors.prize }</span>}
+              </div>
+            </div>
+          </div>
 
           <div className="form-group">
             <label className="control-label">Facilities*</label>
               <Multiselect data={this.state.list} buttonWidth="100%" multiple />
           </div>
-
-
-          <TextFieldGroup
-            error={errors.price}
-            label="Price*"
-            onChange={this.onChange}
-            value={this.state.price}
-            field="price"
-          />
 
           <label className="control-label">Select File</label>
           <input id="input-44" name="input44[]" type="file" ref="fileInput" multiple className="file-loading" />
