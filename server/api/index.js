@@ -5,8 +5,9 @@ import Houses from '../models/house';
 import userApi from './userApi';
 import productApi from './product';
 import authenticate from '../middlewares/authenticate';
+import multer from 'multer';
 const router = express.Router();
-
+const upload = multer({ dest: '../media/img/upload'});
 /*
 User API
 */
@@ -44,6 +45,10 @@ router.use('/product', productApi);
 router.post('/products', (req, res) => {
   res.status(201).send(req.body);
 	// res.status(201).send({ success: true });
+});
+
+router.post('/img/upload', upload.array('photos'), (req, res, next) => {
+  res.status(201).send(req.files);
 });
 
 export default router;
