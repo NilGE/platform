@@ -16,6 +16,7 @@ class HouseForm extends React.Component {
       bathroom: '',
       size: '',
       facilities: [],
+      photos: [],
       price: '',
       errors: {},
       comments: '',
@@ -35,6 +36,7 @@ class HouseForm extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.fileLoadedHandler = this.fileLoadedHandler.bind(this);
   }
 
   onChange(e) {
@@ -44,8 +46,8 @@ class HouseForm extends React.Component {
 
   handleSelectChange (value) {
     this.setState({ facilities: value });
-    console.log({value});
   }
+
 
   onSubmit(e) {
     e.preventDefault();
@@ -58,12 +60,23 @@ class HouseForm extends React.Component {
     });
   }
 
+
+  fileLoadedHandler(e, data) {
+    // console.log('fileuploaded:');
+    // console.log(data);
+    this.setState({photos:this.state.photos.concat([data.response.path])});
+  }
+
   componentDidMount() {
     window.jQuery('#input-44').fileinput({
       uploadUrl: '/api/img/upload',
       maxFilePreviewSize: 10240
     });
+    window.jQuery('#input-44').on('fileuploaded', this.fileLoadedHandler);
   }
+
+
+
 
   render() {
     const { errors } = this.state;
@@ -151,7 +164,8 @@ class HouseForm extends React.Component {
           </div>
 
           <label className="control-label">Select File</label>
-          <input id="input-44" name="photos" type="file" ref="fileInput" multiple className="file-loading" />
+          <input id="input-44" type="file" ref="fileInput" multiple
+          className="file-loading" name="photos[]"/>
           <div id="errorBlock" className="help-block"></div>
 
           <div className="form-group">

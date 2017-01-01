@@ -1,13 +1,13 @@
 import express from 'express';
 // import User from '../models/user';
 import Books from '../models/book';
-import Houses from '../models/house';
+// import Houses from '../models/house';
 import userApi from './userApi';
 import productApi from './product';
 import authenticate from '../middlewares/authenticate';
 import multer from 'multer';
 const router = express.Router();
-const upload = multer({ dest: '../media/img/upload'});
+const upload = multer({ dest: 'server/media/img/upload'});
 /*
 User API
 */
@@ -47,8 +47,8 @@ router.post('/products', (req, res) => {
 	// res.status(201).send({ success: true });
 });
 
-router.post('/img/upload', upload.array('photos'), (req, res, next) => {
-  res.status(201).send(req.files);
+router.post('/img/upload', upload.single('photos[]'), (req, res) => {
+  res.status(201).send(req.file);
 });
 
 export default router;

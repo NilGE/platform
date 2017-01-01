@@ -9,5 +9,6 @@ export const addHouseSuccess = (house) => {
 };
 
 export const createHouse = (house) => {
+  console.log(house);
   return axios.post('/api/product/house/addHouse', house);
 };
