@@ -5,7 +5,11 @@ const HouseDetail = ({house}) => {
     <div className="media">
       <div className="media-left">
         <a href="#">
-          <img className="media-object" src="" alt="Placehold" />
+          {house.photos.map(photo =>
+            <div key={photo}>
+              <img className="media-object" src={photo.slice(photo.indexOf('/') + 1)} width="100px" alt="Placehold" />
+            </div>
+          )}
         </a>
       </div>
       <div className="media-body">

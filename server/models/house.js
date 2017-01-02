@@ -9,9 +9,10 @@ const houseSchema = new Schema({
   bedroom: {type: Number, required: true},
   size: {type: Number},
   facilities: {type: Array},
+  photos: {type: Array},
   price: {type: Number, required: true},
-  commons: {type: String},
-  createAt: {type: Date, required: true}
+  comments: {type: String},
+  createAt: {type: Date}
 }, {collection: 'house'});
 
 

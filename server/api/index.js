@@ -7,7 +7,7 @@ import productApi from './product';
 import authenticate from '../middlewares/authenticate';
 import multer from 'multer';
 const router = express.Router();
-const upload = multer({ dest: 'server/media/img/upload'});
+const upload = multer({ dest: 'public/media/img/upload'});
 /*
 User API
 */

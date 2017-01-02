@@ -6,7 +6,7 @@ class HouseDetailPage extends React.Component {
   render() {
     return (
       <div className="row">
-        <div className="col-md-4 col-md-offset-4">
+        <div className="col-md-8 col-md-offset-2">
           <HouseDetail house = {this.props.house} />
         </div>
       </div>
