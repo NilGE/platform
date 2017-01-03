@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { ADD_HOUSE_SUCCESS, FETCH_HOUSES_SUCCESS } from './actionTypes';
+import { ADD_HOUSE_SUCCESS, FETCH_HOUSES_SUCCESS, SET_HOUSE_SUCCESS } from './actionTypes';
 
 // Sync Action
 export const fetchHousesSuccess = (houses) => {
@@ -30,4 +30,11 @@ export const addHouseSuccess = (house) => {
 
 export const createHouse = (house) => {
   return Axios.post('/api/product/house/addHouse', house);
+};
+
+export const setHouse = (house) => {
+  return {
+    type: SET_HOUSE_SUCCESS,
+    house
+  }
 };

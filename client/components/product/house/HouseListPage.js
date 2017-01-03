@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchHouses } from '../../../actions/houseActions';
+import { fetchHouses, setHouse } from '../../../actions/houseActions';
 
 class HouseListPage extends React.Component{
   constructor(props){
@@ -11,6 +11,11 @@ class HouseListPage extends React.Component{
     this.props.fetchHouses();
   }
 
+  onClick(house) {
+    this.props.setHouse(house);
+    this.context.router.push('/house-detail');
+  }
+
   render() {
     return(
       <div className="row">
@@ -18,7 +23,7 @@ class HouseListPage extends React.Component{
           <h3>Houses</h3>
           <div>
           {this.props.houses.map((house) => <ul key={house._id}>
-            <li>{house.address1}</li>
+            <li><button onClick={this.onClick.bind(this, house)}>{house.address1}</button></li>
           </ul> )}
           </div>
         </div>
@@ -36,14 +41,20 @@ const mapStateToProps = (state) => {
 // Maps actions to props
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchHouses: () => dispatch(fetchHouses())
+    fetchHouses: () => dispatch(fetchHouses()),
+    setHouse: (house) => dispatch(setHouse(house))
   };
 };
 
 
 HouseListPage.propTypes = {
   houses: React.PropTypes.array.isRequired,
-  fetchHouses: React.PropTypes.func.isRequired
+  fetchHouses: React.PropTypes.func.isRequired,
+  setHouse: React.PropTypes.func.isRequired
+};
+
+HouseListPage.contextTypes = {
+  router: React.PropTypes.object.isRequired
 };
 
 // Use connect to put them together  <td><Link to={`/books/${b.id}`}>View</Link></td>

@@ -4,6 +4,8 @@ export const houseReducer = (state = {}, action) => {
   switch (action.type) {
   case actionTypes.ADD_HOUSE_SUCCESS:
     return action.house;
+  case actionTypes.SET_HOUSE_SUCCESS:
+    return action.house;
   default:
     return state;
   }
