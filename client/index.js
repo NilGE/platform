@@ -5,13 +5,13 @@ import { render } from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import routes from './routes';
 import configureStore from './store/configureStore';
-import * as bookActions from './actions/bookActions';
+import * as houseActions from './actions/houseActions';
 import setAuthorizationToken from './utils/setAuthorizationToken';
 import jwtDecode from 'jwt-decode';
 import { setCurrentUserSuccess } from './actions/userActions';
 
 const store = configureStore();
-store.dispatch(bookActions.fetchBooks());
+store.dispatch(houseActions.fetchHouses());
 
 if (localStorage.jwtToken) {
   setAuthorizationToken(localStorage.jwtToken);

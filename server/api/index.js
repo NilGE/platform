@@ -6,6 +6,8 @@ import userApi from './userApi';
 import productApi from './product';
 import authenticate from '../middlewares/authenticate';
 import multer from 'multer';
+import House from '../models/house';
+
 const router = express.Router();
 const upload = multer({ dest: 'public/media/img/upload'});
 /*
@@ -50,5 +52,13 @@ router.post('/products', (req, res) => {
 router.post('/img/upload', upload.single('photos[]'), (req, res) => {
   res.status(201).send(req.file);
 });
+
+router.get('/houses', (req, res) => {
+  House.find({})
+			//  .select('Title Price Author')
+       .then(doc => res.send(doc))
+       .catch(console.error);
+});
+
 
 export default router;

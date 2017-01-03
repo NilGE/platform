@@ -13,5 +13,5 @@ export default combineReducers({
   flashMessages: flashMessages,
   auth: authReducer,
   product: productReducer,
-  house: houseReducer
+  houses: houseReducer
 });

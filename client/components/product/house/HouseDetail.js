@@ -4,13 +4,13 @@ const HouseDetail = ({house}) => {
   return (
     <div className="media">
       <div className="media-left">
-        <a href="#">
-          {house.photos.map(photo =>
-            <div key={photo}>
-              <img className="media-object" src={photo.slice(photo.indexOf('/') + 1)} width="100px" alt="Placehold" />
-            </div>
-          )}
-        </a>
+
+        {house.photos.map(photo =>
+          <div key={photo}>
+            <img className="media-object" src={photo.slice(photo.indexOf('/') + 1)} width="100px" alt="Placehold" />
+          </div>
+        )}
+
       </div>
       <div className="media-body">
         <h4 className="media-heading">Housing Information</h4>
