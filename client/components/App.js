@@ -64,8 +64,8 @@ class App extends React.Component {
             </div>
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul className="nav navbar-nav">
-                <li><Link to="/houseDisplay">Houses</Link></li>
-                <li><Link to="/houseDisplay">Cars</Link></li>
+                <li><Link to="/houseList">Houses</Link></li>
+                <li><Link to="/houseList">Cars</Link></li>
                 <li><Link to="/books">Appliances</Link></li>
                 <li><Link to="/user">Others</Link></li>
               </ul>

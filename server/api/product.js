@@ -9,5 +9,11 @@ router.post('/house/addHouse', (req, res) => {
                      .catch(console.error);
 });
 
+router.get('/house/getAll', (req, res) => {
+  House.find({})
+			//  .select('Title Price Author')
+       .then(doc => res.send(doc))
+       .catch(console.error);
+});
 
 export default router;

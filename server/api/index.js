@@ -44,21 +44,8 @@ Product API
 */
 router.use('/product', productApi);
 
-router.post('/products', (req, res) => {
-  res.status(201).send(req.body);
-	// res.status(201).send({ success: true });
-});
-
 router.post('/img/upload', upload.single('photos[]'), (req, res) => {
   res.status(201).send(req.file);
 });
-
-router.get('/houses', (req, res) => {
-  House.find({})
-			//  .select('Title Price Author')
-       .then(doc => res.send(doc))
-       .catch(console.error);
-});
-
 
 export default router;

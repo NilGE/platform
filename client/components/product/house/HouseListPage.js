@@ -1,18 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import * as houseActions from '../../actions/houseActions';
+import { fetchHouses } from '../../../actions/houseActions';
 
-
-class House extends React.Component{
+class HouseListPage extends React.Component{
   constructor(props){
     super(props);
   }
 
-  // componentDidMount(){
-  //   this.props.fetchHouses();
-  // }
+  componentDidMount(){
+    this.props.fetchHouses();
+  }
 
-  render(){
+  render() {
     return(
       <div className="row">
         <div className="col-md-6">
@@ -28,32 +27,26 @@ class House extends React.Component{
   }
 }
 
-//{this.props.houses.map((house) => <ul key={house._id}>
-//   <li>{house.address1}</li>
-// </ul> )}
-
 const mapStateToProps = (state) => {
   return {
     houses: state.houses
   };
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     // This dispatch will trigger
-//     // the Ajax request we setup
-//     // in our actions
-//     fetchHouses: () => dispatch(houseActions.fetchHouses()),
-//   };
-// };
+// Maps actions to props
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchHouses: () => dispatch(fetchHouses())
+  };
+};
 
 
-House.propTypes = {
-  // fetchHouses: React.PropTypes.func.isRequired,
-  houses: React.PropTypes.object.isRequired
+HouseListPage.propTypes = {
+  houses: React.PropTypes.array.isRequired,
+  fetchHouses: React.PropTypes.func.isRequired
 };
 
 // Use connect to put them together  <td><Link to={`/books/${b.id}`}>View</Link></td>
 // export default connect(mapStateToProps, mapDispatchToProps)(House);
 // export default connect(mapStateToProps, mapDispatchToProps)(House);
-export default connect(mapStateToProps, null)(House);
+export default connect(mapStateToProps, mapDispatchToProps)(HouseListPage);

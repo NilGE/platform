@@ -4,7 +4,7 @@ import {usersReducer} from './userReducers';
 import productReducer from './productReducers';
 import flashMessages from './flashMessages';
 import authReducer from './authReducer';
-import houseReducer from './houseReducers';
+import { houseReducer, housesReducer } from './houseReducers';
 
 export default combineReducers({
   books: booksReducer,
@@ -13,5 +13,6 @@ export default combineReducers({
   flashMessages: flashMessages,
   auth: authReducer,
   product: productReducer,
-  houses: houseReducer
+  house: houseReducer,
+  houses: housesReducer
 });
