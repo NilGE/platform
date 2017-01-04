@@ -4,6 +4,7 @@ import Books from '../models/book';
 // import Houses from '../models/house';
 import userApi from './userApi';
 import productApi from './product';
+import mailApi from './mail';
 import authenticate from '../middlewares/authenticate';
 import multer from 'multer';
 import House from '../models/house';
@@ -47,5 +48,11 @@ router.use('/product', productApi);
 router.post('/img/upload', upload.single('photos[]'), (req, res) => {
   res.status(201).send(req.file);
 });
+
+/*
+Mail API
+*/
+
+router.use('/mail', mailApi);
 
 export default router;
