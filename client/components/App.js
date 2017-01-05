@@ -66,7 +66,7 @@ class App extends React.Component {
               <ul className="nav navbar-nav">
                 <li><Link to="/houseList">Houses</Link></li>
                 <li><Link to="/houseList">Cars</Link></li>
-                <li><Link to="/books">Appliances</Link></li>
+                <li><Link to="/user">Appliances</Link></li>
                 <li><Link to="/user">Others</Link></li>
               </ul>
               { isAuthenticated ? userLink : guestLink }

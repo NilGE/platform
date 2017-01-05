@@ -57,7 +57,4 @@ HouseListPage.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
 
-// Use connect to put them together  <td><Link to={`/books/${b.id}`}>View</Link></td>
-// export default connect(mapStateToProps, mapDispatchToProps)(House);
-// export default connect(mapStateToProps, mapDispatchToProps)(House);
 export default connect(mapStateToProps, mapDispatchToProps)(HouseListPage);

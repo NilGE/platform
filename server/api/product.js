@@ -18,8 +18,4 @@ router.get('/house/getAll', (req, res) => {
        .catch(console.error);
 });
 
-router.post('/img/upload', upload.single('photos[]'), (req, res) => {
-  res.status(201).send(req.file);
-});
-
 export default router;
