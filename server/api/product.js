@@ -5,7 +5,7 @@ import multer from 'multer';
 const router = express.Router();
 const upload = multer({ dest: 'public/media/img/upload'});
 
-router.post('/house/addHouse', (req, res) => {
+router.post('/house/addOne', (req, res) => {
   new House(req.body).save()
                      .then(doc => res.send(doc))
                      .catch(console.error);

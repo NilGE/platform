@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import axios from 'axios';
 import { ADD_HOUSE_SUCCESS, FETCH_HOUSES_SUCCESS, SET_HOUSE_SUCCESS } from './actionTypes';
 
 // Sync Action
@@ -11,7 +11,7 @@ export const fetchHousesSuccess = (houses) => {
 //Async Action
 export const fetchHouses = () => {
   return (dispatch) => {
-    return Axios.get('/api/product/house/getAll')
+    return axios.get('/api/product/house/getAll')
       .then(response => {
         dispatch(fetchHousesSuccess(response.data));
       })
@@ -29,7 +29,14 @@ export const addHouseSuccess = (house) => {
 };
 
 export const createHouse = (house) => {
-  return Axios.post('/api/product/house/addHouse', house);
+  return (dispatch) => {
+    return axios.post('/api/product/house/addOne', house)
+      .then(response => {
+        dispatch(addHouseSuccess(response.data));
+      }).catch(error => {
+        throw(error);
+      });
+  };
 };
 
 export const setHouse = (house) => {

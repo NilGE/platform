@@ -1,6 +1,6 @@
 import React from 'react';
 import TextFieldGroup from '../../common/TextFieldGroup';
-import { addHouseSuccess, createHouse } from '../../../actions/houseActions';
+import { createHouse } from '../../../actions/houseActions';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import Select from 'react-select';
@@ -53,9 +53,7 @@ class HouseForm extends React.Component {
     e.preventDefault();
     // Call method from parent component
     // to handle submission
-
-    createHouse(this.state).then(res => {
-      this.props.addHouseSuccess(res.data);
+    this.props.createHouse(this.state).then(() => {
       this.context.router.push('/house-detail');
     });
   }
@@ -181,12 +179,12 @@ class HouseForm extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addHouseSuccess: state => dispatch(addHouseSuccess(state))
+    createHouse: state => dispatch(createHouse(state))
   };
 };
 
 HouseForm.propTypes = {
-  addHouseSuccess: React.PropTypes.func.isRequired
+  createHouse: React.PropTypes.func.isRequired
 };
 
 HouseForm.contextTypes = {
