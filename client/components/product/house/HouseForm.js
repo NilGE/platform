@@ -69,7 +69,7 @@ class HouseForm extends React.Component {
 
   componentDidMount() {
     window.jQuery('#input-44').fileinput({
-      uploadUrl: '/api/img/upload',
+      uploadUrl: '/api/file/img/upload',
       maxFilePreviewSize: 10240
     });
     window.jQuery('#input-44').on('fileuploaded', this.fileLoadedHandler);
