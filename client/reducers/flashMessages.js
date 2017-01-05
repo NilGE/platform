@@ -2,7 +2,7 @@ import {  ADD_FLASH_MESSAGE, DELETE_FLASH_MESSAGE } from '../actions/actionTypes
 import shortid from 'shortid';
 import findIndex from 'lodash/findIndex';
 
-export default (state=[], action = {}) => {
+export const flashMessages = (state=[], action = {}) => {
   switch(action.type) {
     case ADD_FLASH_MESSAGE:
       return [

@@ -1,10 +1,10 @@
-import * as actionTypes from '../actions/actionTypes';
+import { ADD_HOUSE_SUCCESS, SET_HOUSE_SUCCESS, FETCH_HOUSES_SUCCESS} from '../actions/actionTypes';
 
 export const houseReducer = (state = {}, action) => {
   switch (action.type) {
-  case actionTypes.ADD_HOUSE_SUCCESS:
+  case ADD_HOUSE_SUCCESS:
     return action.house;
-  case actionTypes.SET_HOUSE_SUCCESS:
+  case SET_HOUSE_SUCCESS:
     return action.house;
   default:
     return state;
@@ -14,7 +14,7 @@ export const houseReducer = (state = {}, action) => {
 
 export const housesReducer = (state = [], action) => {
   switch (action.type) {
-  case actionTypes.FETCH_HOUSES_SUCCESS:
+  case FETCH_HOUSES_SUCCESS:
       return action.houses;
   default:
     return state;

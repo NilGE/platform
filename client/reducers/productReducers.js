@@ -1,8 +1,8 @@
-import * as actionTypes from '../actions/actionTypes';
+import { CREATE_NEW_SUCCESS } from '../actions/actionTypes';
 
-export default (state = [], action) => {
+export const productReducer = (state = [], action) => {
   switch (action.type) {
-  case actionTypes.CREATE_NEW_SUCCESS:
+  case CREATE_NEW_SUCCESS:
     return [
       ...state,
       Object.assign({}, action.product)
