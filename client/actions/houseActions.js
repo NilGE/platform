@@ -1,5 +1,8 @@
 import axios from 'axios';
-import { ADD_HOUSE_SUCCESS, FETCH_HOUSES_SUCCESS, SET_HOUSE_SUCCESS } from './actionTypes';
+import { ADD_HOUSE_SUCCESS, FETCH_HOUSES_SUCCESS, SET_HOUSE_SUCCESS, FETCH_HOUSE_SUCCESS } from './actionTypes';
+
+
+
 
 // Sync Action
 export const fetchHousesSuccess = (houses) => {
@@ -18,6 +21,25 @@ export const fetchHouses = () => {
       .catch(error => {
         throw(error);
       });
+  };
+};
+
+export const fetchHouseSuccess = (house) => {
+  return {
+    type: FETCH_HOUSE_SUCCESS,
+    house
+  };
+};
+
+export const fetchHouse = (_id) => {
+  return (dispatch) => {
+    return axios.get('/api/product/house/getOne/' + _id)
+    .then(response => {
+      dispatch(fetchHouseSuccess(response.data));
+    })
+    .catch(error => {
+      throw(error);
+    });
   };
 };
 

@@ -1,15 +1,16 @@
 import React from 'react';
 
 const HouseDetail = ({house}) => {
+  console.log(house);
   return (
     <div className="media">
       <div className="media-left">
 
-        {house.photos.map(photo =>
-          <div key={photo}>
-            <img className="media-object" src={photo.slice(photo.indexOf('/') + 1)} width="100px" alt="Placehold" />
-          </div>
-        )}
+      {house.photos.map(photo =>
+        <div key={photo}>
+          <img className="media-object" src={photo.slice(photo.indexOf('/') + 1)} width="100px" alt="Placehold" />
+        </div>
+      )}
 
       </div>
       <div className="media-body">

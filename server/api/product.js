@@ -18,4 +18,15 @@ router.get('/house/getAll', (req, res) => {
        .catch(console.error);
 });
 
+router.get('/house/getOne/:_id', (req, res) => {
+  House.findOne({ '_id': req.params._id})
+       .then(house => res.send(house))
+       .catch(console.error)
+
+  House.find({})
+			//  .select('Title Price Author')
+       .then(doc => res.send(doc))
+       .catch(console.error);
+});
+
 export default router;

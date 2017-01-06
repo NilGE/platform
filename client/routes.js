@@ -20,6 +20,6 @@ export default (
     <Route path="/login" component={LoginPage}></Route>
     <Route path="/new-house" component={NewHousePage}></Route>
     <Route path='/new-event' component={requireAuth(NewEventPage)} />
-    <Route path='/house-detail' component={HouseDetailPage} />
+    <Route path='/house-detail/:_id' component={HouseDetailPage} />
   </Route>
 );

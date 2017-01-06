@@ -13,7 +13,7 @@ class HouseListPage extends React.Component{
 
   onClick(house) {
     this.props.setHouse(house);
-    this.context.router.push('/house-detail');
+    this.context.router.push('/house-detail/'+house._id);
   }
 
   render() {
